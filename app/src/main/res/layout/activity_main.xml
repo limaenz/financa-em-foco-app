@@ -9,22 +9,19 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textFinancaEmFoco"
+        android:id="@+id/textViewAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Finança em foco"
-        android:textAllCaps="true"
-        android:fontFamily="casual"
-        android:text
-        android:textColor="@color/black" />
+        android:text="Finança em Foco"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="348dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="80dp"
         android:src="@drawable/logo" />
 
     <View
