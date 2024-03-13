@@ -1,4 +1,4 @@
-package com.financa_em_foco_app;
+package com.example.financa_em_foco_app;
 
 import android.os.Bundle;
 
