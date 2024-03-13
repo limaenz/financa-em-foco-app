@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.financa_em_foco_app.RegisterActivity" />
+        <activity android:name="com.example.financa_em_foco_app.LoginActivity" />
     </application>
 
 </manifest>
