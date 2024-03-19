@@ -23,6 +23,7 @@
         </activity>
         <activity android:name="com.example.financa_em_foco_app.RegisterActivity" />
         <activity android:name="com.example.financa_em_foco_app.LoginActivity" />
+        <activity android:name="com.example.financa_em_foco_app.TelaInicialActivity" />
     </application>
 
 </manifest>

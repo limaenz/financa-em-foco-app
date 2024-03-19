@@ -22,7 +22,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-
         <TextView
             android:id="@+id/textViewCabecalho"
             android:layout_width="match_parent"
@@ -45,7 +44,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonVoltar"
+            android:id="@+id/buttonEntrarNaMinhaConta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Entrar na minha conta" />
