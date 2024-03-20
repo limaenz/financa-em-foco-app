@@ -28,13 +28,16 @@
             android:layout_height="wrap_content"
             android:text="Crie sua conta no Finança em foco"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            />
 
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu e-mail cadastrado" />
+            android:hint="Digite seu e-mail"
+            android:inputType="textEmailAddress"
+            />
 
         <EditText
             android:id="@+id/editTextPassword"

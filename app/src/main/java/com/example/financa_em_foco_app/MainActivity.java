@@ -2,26 +2,27 @@ package com.example.financa_em_foco_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.financa_em_foco_app.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Button botaoCriarConta = findViewById(R.id.buttonCriarConta);
-        Button botaoJaTenhoConta = findViewById(R.id.buttonJaTenhoConta);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        botaoCriarConta.setOnClickListener(v -> {
+        binding.buttonCriarConta.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
-        botaoJaTenhoConta.setOnClickListener(v -> {
+        binding.buttonJaTenhoConta.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });

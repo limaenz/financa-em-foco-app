@@ -34,7 +34,9 @@
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu e-mail cadastrado" />
+            android:hint="Digite seu e-mail cadastrado"
+            android:inputType="textEmailAddress"
+            />
 
         <EditText
             android:id="@+id/editTextPassword"
