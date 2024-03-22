@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "91429334690",
+    "project_id": "financa-em-foco-app",
+    "storage_bucket": "financa-em-foco-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91429334690:android:bbce0a2a8ad9fb4e9431fb",
+        "android_client_info": {
+          "package_name": "com.example.financa_em_foco_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBh7O6ycIJYsOmXoBH-juv5y4-vui1Kio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
