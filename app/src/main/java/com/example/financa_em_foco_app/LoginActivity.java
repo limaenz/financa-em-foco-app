@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.financa_em_foco_app.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         binding.buttonEntrarNaMinhaConta.setOnClickListener(v -> fazerLogin());
-        binding.textViewEsqueciMinhaSenha.setOnClickListener(v -> esqueciMinhaSenha());
+        binding.textViewEsqueciMinhaSenha.setOnClickListener(v -> startActivity(new Intent(this, EsqueciMinhaSenhaActivity.class)));
     }
 
     private void fazerLogin() {
@@ -45,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         String senha = binding.editTextSenha.getText().toString().trim();
 
         if (dadosDeLoginValidos(email, senha)) {
+            binding.buttonEntrarNaMinhaConta.setEnabled(false);
             autenticarUsuario(email, senha);
         }
     }
@@ -68,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     private void autenticarUsuario(String email, String senha) {
         mAuth.signInWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, task -> {
+                    binding.buttonEntrarNaMinhaConta.setEnabled(true);
                     if (task.isSuccessful()) {
                         handleLoginComSucesso();
                     } else {
@@ -92,34 +91,5 @@ public class LoginActivity extends AppCompatActivity {
                 "Falha na autenticação.",
                 Toast.LENGTH_SHORT
         ).show();
-    }
-
-    private void esqueciMinhaSenha() {
-        String email = binding.editTextEmail.getText().toString().trim();
-
-        if (email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.editTextEmail.setError("Digite um e-mail válido.");
-            binding.editTextEmail.requestFocus();
-            return;
-        }
-
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(
-                            LoginActivity.this,
-                            "E-mail de redefinição de senha enviado com sucesso.",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                } else {
-                    Toast.makeText(
-                            LoginActivity.this,
-                            "Falha ao enviar e-mail de redefinição de senha.",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
-            }
-        });
     }
 }
