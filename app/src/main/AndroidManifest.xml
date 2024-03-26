@@ -13,10 +13,7 @@
         android:theme="@style/Theme.Financaemfocoapp"
         tools:targetApi="31">
         <activity
-            android:name=".EsqueciMinhaSenhaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".EsqueciMinhaSenhaActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".TelaInicialActivity" />
     </application>

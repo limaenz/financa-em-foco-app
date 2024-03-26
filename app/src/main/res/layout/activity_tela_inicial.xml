@@ -13,4 +13,13 @@
         android:layout_marginBottom="16dp"
         app:srcCompat="@drawable/mais"
         app:elevation="6dp"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="#800080"
+        app:title="Despesas"
+        app:titleTextColor="@android:color/white"/>
 </RelativeLayout>

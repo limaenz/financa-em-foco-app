@@ -8,22 +8,35 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewAppName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Finança em Foco"
-        android:layout_marginBottom="80dp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
     <ImageView
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="348dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="80dp"
         android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textViewAppName"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:text="Domine suas despesas. Conquiste sua liberdade financeira."
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewSubAppName"
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:text="Comece hoje mesmo sua jornada rumo ao sucesso financeiro."
+        android:layout_marginBottom="50dp"
+        android:textColor="#000000"
+        android:textSize="16dp" />
 
     <View
         android:id="@+id/divider"
@@ -33,17 +46,17 @@
         android:background="?android:attr/listDivider" />
 
     <Button
-        android:id="@+id/buttonCriarConta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Criar conta" />
-
-    <Button
         android:id="@+id/buttonJaTenhoConta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Já tenho conta" />
+
+    <Button
+        android:id="@+id/buttonCriarConta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Criar conta" />
 
 </LinearLayout>

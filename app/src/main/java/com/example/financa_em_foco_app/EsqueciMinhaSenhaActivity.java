@@ -42,8 +42,9 @@ public class EsqueciMinhaSenhaActivity extends AppCompatActivity {
             binding.editTextEmail.requestFocus();
             return;
         }
-
+        binding.buttonEnviar.setEnabled(false);
         mAuth.sendPasswordResetEmail(email).addOnCompleteListener(this, task -> {
+            binding.buttonEnviar.setEnabled(true);
             if (task.isSuccessful()) {
                 Toast.makeText(
                         EsqueciMinhaSenhaActivity.this,
