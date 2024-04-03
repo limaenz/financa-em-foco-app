@@ -1,7 +1,6 @@
 package com.example.financa_em_foco_app;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,7 +16,6 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         configuraTela();
-        configuraBotaoAdicionar();
         configurarNavegacaoInferior();
 
     }
@@ -26,10 +24,6 @@ public class TelaInicialActivity extends AppCompatActivity {
         binding = ActivityTelaInicialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         substituirFragmento(new HomeFragment());
-    }
-
-    private void configuraBotaoAdicionar() {
-        binding.buttonAdicionar.setOnClickListener(view -> Toast.makeText(TelaInicialActivity.this, "Despesa criada! 😁", Toast.LENGTH_SHORT).show());
     }
 
     private void configurarNavegacaoInferior() {
