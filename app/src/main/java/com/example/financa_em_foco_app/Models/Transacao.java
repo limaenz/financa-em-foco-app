@@ -11,6 +11,7 @@ public class Transacao {
     public String descricao;
     public double valor;
     public String tipo;
+    public String idUsuario;
 
     public Transacao() {
     }
@@ -20,12 +21,14 @@ public class Transacao {
             Date data,
             String descricao,
             double valor,
-            String tipo
+            String tipo,
+            String idUsuario
     ) {
         this.id = id;
         this.data = data;
         this.descricao = descricao;
         this.valor = valor;
         this.tipo = tipo;
+        this.idUsuario = idUsuario;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.financa_em_foco_app.Fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.financa_em_foco_app.Adapters.TransacaoAdapter;
 import com.example.financa_em_foco_app.Models.Transacao;
+import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -57,9 +60,45 @@ public class HomeFragment extends Fragment {
     }
 
     private void carregarTransacoes() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
+
+        binding.listTransacoes.setLayoutManager(gridLayoutManager);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        transacoesList = new ArrayList<>();
+
+        TransacaoAdapter adapter = new TransacaoAdapter(transacoesList);
+        binding.listTransacoes.setAdapter(adapter);
+        dialog.show();
+
         DatabaseReference transacoesRef = FirebaseDatabase
                 .getInstance()
                 .getReference()
                 .child("Transacoes");
+
+        transacoesRef.orderByChild("idUsuario").equalTo(mAuth.getUid())
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                transacoesList.clear();
+
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                    Transacao transacao = itemSnapshot.getValue(Transacao.class);
+                    transacoesList.add(transacao);
+                }
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                dialog.dismiss();
+            }
+        });
     }
 }

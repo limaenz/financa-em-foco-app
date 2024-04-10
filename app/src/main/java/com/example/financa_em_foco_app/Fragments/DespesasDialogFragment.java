@@ -1,5 +1,6 @@
 package com.example.financa_em_foco_app.Fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
@@ -10,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.financa_em_foco_app.LoginActivity;
 import com.example.financa_em_foco_app.Models.Transacao;
+import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentDespesasDialogBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,6 +27,7 @@ import java.util.Locale;
 public class DespesasDialogFragment extends DialogFragment {
     private FragmentDespesasDialogBinding binding;
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class DespesasDialogFragment extends DialogFragment {
     }
 
     private void configuraTela() {
+        mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         binding.editTextData.setOnClickListener(v -> mostrarData());
         binding.botaoAdicionar.setOnClickListener(v -> adicionarTransacao());
@@ -68,28 +72,38 @@ public class DespesasDialogFragment extends DialogFragment {
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setCancelable(false);
+            builder.setView(R.layout.progress_layout);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
             Date data = dataFormat.parse(dataString);
             String id = mDatabase.push().getKey();
+            String usuarioId = mAuth.getCurrentUser().getUid();
 
             if (id != null) {
-                Transacao transacao = new Transacao(id, data, descricao, valor, tipo);
+                Transacao transacao = new Transacao(id, data, descricao, valor, tipo, usuarioId);
 
-                mDatabase.child("Transacoes").child(id).setValue(transacao)
+                mDatabase.child("Transacoes")
+                        .child(id)
+                        .setValue(transacao)
                         .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                binding.botaoAdicionar.setEnabled(true);
-                                binding.progressBar.setVisibility(View.GONE);
-                                dismiss();
-                            } else {
-                                binding.botaoAdicionar.setEnabled(true);
-                                binding.progressBar.setVisibility(View.GONE);
-                                Toast.makeText(
-                                        getContext(),
-                                        "Falha ao adicionar transação.",
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                            }
-                        });
+                    if (task.isSuccessful()) {
+                        binding.botaoAdicionar.setEnabled(true);
+                        binding.progressBar.setVisibility(View.GONE);
+                        dialog.dismiss();
+                        dismiss();
+                    } else {
+                        binding.botaoAdicionar.setEnabled(true);
+                        binding.progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getContext(),
+                                "Falha ao adicionar transação.",
+                                Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        dismiss();
+                    }
+                });
             }
         } catch (ParseException e) {
             e.printStackTrace();
