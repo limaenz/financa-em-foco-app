@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,10 @@ public class DespesasDialogFragment extends DialogFragment {
     private void configuraTela() {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        binding.editTextData.setFocusable(false);
+        binding.editTextData.setInputType(InputType.TYPE_NULL);
+
         binding.editTextData.setOnClickListener(v -> mostrarData());
         binding.botaoAdicionar.setOnClickListener(v -> adicionarTransacao());
     }
@@ -49,7 +54,8 @@ public class DespesasDialogFragment extends DialogFragment {
         int mes = calendar.get(Calendar.MONTH);
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), (view, year, monthOfYear, dayOfMonth) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
+                (view, year, monthOfYear, dayOfMonth) -> {
             String dataSelecionada = String.format(Locale.US, "%04d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
             binding.editTextData.setText(dataSelecionada);
         }, ano, mes, dia);
@@ -57,8 +63,53 @@ public class DespesasDialogFragment extends DialogFragment {
         datePickerDialog.show();
     }
 
+    private Boolean validCampos() {
+        String valor = binding.editTextValor.getText().toString();
+        String data = binding.editTextData.getText().toString();
+        String descricao = binding.editTextDescricao.getText().toString();
+
+        if (descricao.isEmpty()) {
+            binding.editTextDescricao.setError("Insira a descrição.");
+            binding.editTextDescricao.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        if (data.isEmpty()) {
+            binding.editTextData.setError("Insira a data.");
+            binding.editTextData.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        if (valor.isEmpty()) {
+            binding.editTextValor.setError("Insira o valor.");
+            binding.editTextValor.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        if (valor.length() > 10) {
+            binding.editTextValor.setError("Valor inválido.");
+            binding.editTextValor.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        return true;
+    }
+
     private void adicionarTransacao() {
         binding.botaoAdicionar.setEnabled(false);
+
+        if (!validCampos()) {
+            return;
+        }
+
         binding.progressBar.setVisibility(View.VISIBLE);
 
         String descricao = binding.editTextDescricao.getText().toString();
@@ -68,6 +119,7 @@ public class DespesasDialogFragment extends DialogFragment {
         if (binding.radioButtonGanho.isChecked())
             tipo = binding.radioButtonGanho.getText().toString();
         else tipo = binding.radioButtonGasto.getText().toString();
+
         String dataString = binding.editTextData.getText().toString();
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
@@ -85,10 +137,7 @@ public class DespesasDialogFragment extends DialogFragment {
             if (id != null) {
                 Transacao transacao = new Transacao(id, data, descricao, valor, tipo, usuarioId);
 
-                mDatabase.child("Transacoes")
-                        .child(id)
-                        .setValue(transacao)
-                        .addOnCompleteListener(task -> {
+                mDatabase.child("Transacoes").child(id).setValue(transacao).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
@@ -97,9 +146,7 @@ public class DespesasDialogFragment extends DialogFragment {
                     } else {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(),
-                                "Falha ao adicionar transação.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Falha ao adicionar transação.", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         dismiss();
                     }

@@ -60,17 +60,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void carregarTransacoes() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
-
-        binding.listTransacoes.setLayoutManager(gridLayoutManager);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
-
-        transacoesList = new ArrayList<>();
 
         TransacaoAdapter adapter = new TransacaoAdapter(transacoesList);
         binding.listTransacoes.setAdapter(adapter);
@@ -81,7 +75,10 @@ public class HomeFragment extends Fragment {
                 .getReference()
                 .child("Transacoes");
 
-        transacoesRef.orderByChild("idUsuario").equalTo(mAuth.getUid())
+        transacoesRef
+                .orderByChild("idUsuario")
+                .equalTo(mAuth.getUid())
+                .limitToLast(4)
                 .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,6 +88,7 @@ public class HomeFragment extends Fragment {
                     Transacao transacao = itemSnapshot.getValue(Transacao.class);
                     transacoesList.add(transacao);
                 }
+
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }

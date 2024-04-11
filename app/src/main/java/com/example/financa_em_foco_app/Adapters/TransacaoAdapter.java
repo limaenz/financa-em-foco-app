@@ -12,7 +12,6 @@ import com.example.financa_em_foco_app.databinding.ItemTransacaoBinding;
 
 import java.util.List;
 
-
 public class TransacaoAdapter extends RecyclerView.Adapter<TransacaoViewHolder> {
     private List<Transacao> transacoesList;
 
