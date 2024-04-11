@@ -60,6 +60,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void carregarTransacoes() {
+        //TODO: Implementar regra de se for gasto == vermelho e ganho == verde
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
@@ -70,16 +72,9 @@ public class HomeFragment extends Fragment {
         binding.listTransacoes.setAdapter(adapter);
         dialog.show();
 
-        DatabaseReference transacoesRef = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("Transacoes");
+        DatabaseReference transacoesRef = FirebaseDatabase.getInstance().getReference().child("Transacoes");
 
-        transacoesRef
-                .orderByChild("idUsuario")
-                .equalTo(mAuth.getUid())
-                .limitToLast(4)
-                .addValueEventListener(new ValueEventListener() {
+        transacoesRef.orderByChild("idUsuario").equalTo(mAuth.getUid()).limitToLast(4).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 transacoesList.clear();
@@ -88,6 +83,8 @@ public class HomeFragment extends Fragment {
                     Transacao transacao = itemSnapshot.getValue(Transacao.class);
                     transacoesList.add(transacao);
                 }
+
+                if (transacoesList.size() == 4) binding.textViewVerMais.setVisibility(View.VISIBLE);
 
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();

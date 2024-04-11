@@ -5,34 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginVertical="10dp"
-    android:layout_marginStart="12dp"
+    android:layout_marginStart="2dp"
     android:layout_marginEnd="12dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
 
         <TextView
             android:id="@+id/descricaoTextView"
             android:layout_width="150dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/valorTextView"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="20dp"
             android:layout_below="@id/descricaoTextView"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
             android:textColor="@color/green"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

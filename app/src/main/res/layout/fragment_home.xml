@@ -9,11 +9,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
         android:text="Últimas transações"
-        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,6 +23,19 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp" />
 
+    <TextView
+        android:id="@+id/textViewVerMais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="327dp"
+        android:layout_marginTop="365dp"
+        android:clickable="true"
+        android:text="Ver mais"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonAdicionar"
         android:layout_width="wrap_content"
@@ -30,6 +43,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="50dp"
+        android:contentDescription="TODO"
         android:src="@drawable/mais" />
 
 </FrameLayout>
