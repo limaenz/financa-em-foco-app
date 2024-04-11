@@ -60,8 +60,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void carregarTransacoes() {
-        //TODO: Implementar regra de se for gasto == vermelho e ganho == verde
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
