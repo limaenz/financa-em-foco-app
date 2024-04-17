@@ -2,23 +2,38 @@ package com.example.financa_em_foco_app;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.financa_em_foco_app.databinding.ActivityDetalhesDespesasBinding;
 
 public class DetalhesDespesasActivity extends AppCompatActivity {
+    private ActivityDetalhesDespesasBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detalhes_despesas);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        binding = ActivityDetalhesDespesasBinding.inflate((getLayoutInflater()));
+        setContentView(binding.getRoot());
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null) {
+            binding.descricaoTextView
+                    .setText(bundle
+                    .getString("Descricao"));
+
+            binding.valorTextView
+                    .setText(String.format("Valor: R$ %s", bundle
+                            .getDouble("Valor")));
+
+            binding.dataTextView
+                    .setText(String.format("Data: %s", bundle
+                            .getString("Data")));
+
+            binding.tipoTextView
+                    .setText(String.format("Tipo: %s", bundle
+                            .getString("Tipo")));
+
+        }
     }
 }

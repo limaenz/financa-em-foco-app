@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         binding.buttonAdicionar.setOnClickListener(v -> mostrarModal());
         recyclerView = binding.listTransacoes;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TransacaoAdapter(transacoesList);
+        adapter = new TransacaoAdapter(getContext(), transacoesList);
         recyclerView.setAdapter(adapter);
         carregarTransacoes();
     }
@@ -66,7 +66,11 @@ public class HomeFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        TransacaoAdapter adapter = new TransacaoAdapter(transacoesList);
+        TransacaoAdapter adapter = new TransacaoAdapter(
+                getContext(),
+                transacoesList
+        );
+
         binding.listTransacoes.setAdapter(adapter);
         dialog.show();
 
