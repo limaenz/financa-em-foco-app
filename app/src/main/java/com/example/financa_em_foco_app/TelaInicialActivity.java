@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.financa_em_foco_app.Fragments.HomeFragment;
+import com.example.financa_em_foco_app.Fragments.ObjetivosFragment;
 import com.example.financa_em_foco_app.Fragments.ProfileFragment;
 import com.example.financa_em_foco_app.databinding.ActivityTelaInicialBinding;
 
@@ -24,15 +25,19 @@ public class TelaInicialActivity extends AppCompatActivity {
         binding = ActivityTelaInicialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         substituirFragmento(new HomeFragment());
+        binding.bottomNavigation.setSelectedItemId(R.id.home);
     }
 
     private void configurarNavegacaoInferior() {
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+
             if (itemId == R.id.home) {
                 substituirFragmento(new HomeFragment());
-            } else if (itemId == R.id.profile) {
+            } else if (itemId == R.id.perfil) {
                 substituirFragmento(new ProfileFragment());
+            } else if (itemId == R.id.objetivos) {
+                substituirFragmento(new ObjetivosFragment());
             }
 
             return true;

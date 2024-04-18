@@ -1,6 +1,7 @@
 package com.example.financa_em_foco_app.Fragments;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +54,15 @@ public class HomeFragment extends Fragment {
         adapter = new TransacaoAdapter(getContext(), transacoesList);
         recyclerView.setAdapter(adapter);
         carregarTransacoes();
+
+        PieChart mPieChart = (PieChart) binding.piechart;
+
+        mPieChart.addPieSlice(new PieModel("Freetime", 15, Color.parseColor("#FE6DA8")));
+        mPieChart.addPieSlice(new PieModel("Sleep", 25, Color.parseColor("#56B7F1")));
+        mPieChart.addPieSlice(new PieModel("Work", 35, Color.parseColor("#CDA67F")));
+        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+
+        mPieChart.startAnimation();
     }
 
     private void mostrarModal() {

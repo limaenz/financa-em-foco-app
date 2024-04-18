@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +8,24 @@
     tools:context=".Fragments.HomeFragment">
 
     <TextView
+        android:id="@+id/statusBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
-        android:text="Últimas transações"
+        android:background="?android:attr/colorPrimary"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Controle financeiro"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewControleFinanceiro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="75dp"
+        android:text="Últimas despesas"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -21,14 +35,14 @@
         android:layout_width="367dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="100dp" />
 
     <TextView
         android:id="@+id/textViewVerMais"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="327dp"
-        android:layout_marginTop="365dp"
+        android:layout_marginTop="385dp"
         android:clickable="true"
         android:text="Ver mais"
         android:textColor="@color/black"
@@ -45,5 +59,14 @@
         android:layout_marginBottom="50dp"
         android:contentDescription="TODO"
         android:src="@drawable/mais" />
+
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="60dp"
+        android:padding="8dp"
+        app:egLegendTextSize="18sp" />
 
 </FrameLayout>
