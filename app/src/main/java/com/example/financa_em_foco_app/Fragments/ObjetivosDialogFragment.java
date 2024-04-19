@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.financa_em_foco_app.Models.Objetivo;
 import com.example.financa_em_foco_app.Models.Transacao;
 import com.example.financa_em_foco_app.R;
-import com.example.financa_em_foco_app.databinding.FragmentDespesasDialogBinding;
 import com.example.financa_em_foco_app.databinding.FragmentObjetivosDialogBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -116,11 +116,6 @@ public class ObjetivosDialogFragment extends DialogFragment {
         String descricao = binding.editTextDescricao.getText().toString();
         double valor = Double.parseDouble(binding.editTextValor.getText().toString());
 
-        String tipo;
-        if (binding.radioButtonGanho.isChecked())
-            tipo = binding.radioButtonGanho.getText().toString();
-        else tipo = binding.radioButtonGasto.getText().toString();
-
         String dataString = binding.editTextData.getText().toString();
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
@@ -136,9 +131,9 @@ public class ObjetivosDialogFragment extends DialogFragment {
             String usuarioId = mAuth.getCurrentUser().getUid();
 
             if (id != null) {
-                Transacao transacao = new Transacao(id, data, descricao, valor, tipo, usuarioId);
+                Objetivo transacao = new Objetivo(id, data, descricao, valor, usuarioId);
 
-                mDatabase.child("Transacoes").child(id).setValue(transacao).addOnCompleteListener(task -> {
+                mDatabase.child("Objetivos").child(id).setValue(transacao).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
@@ -147,7 +142,7 @@ public class ObjetivosDialogFragment extends DialogFragment {
                     } else {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Falha ao adicionar transação.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Falha ao adicionar objetivo.", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         dismiss();
                     }

@@ -54,32 +54,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RadioGroup
-        android:id="@+id/radioGroupTipo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButtonGasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Ganho"
-            android:textColor="#008000"
-            android:textStyle="bold" />
-
-        <RadioButton
-            android:id="@+id/radioButtonGanho"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="Gasto"
-            android:textColor="#FF0000"
-            android:textStyle="bold" />
-    </RadioGroup>
-
     <Button
         android:id="@+id/botaoAdicionar"
         android:layout_width="match_parent"
