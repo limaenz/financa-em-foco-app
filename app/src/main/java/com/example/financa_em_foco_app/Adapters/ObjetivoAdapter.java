@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.financa_em_foco_app.Models.Objetivo;
 import com.example.financa_em_foco_app.ViewHolder.ObjetivoViewHolder;
-import com.example.financa_em_foco_app.ViewHolder.TransacaoViewHolder;
 import com.example.financa_em_foco_app.databinding.ItemTransacaoBinding;
 
 import java.util.List;

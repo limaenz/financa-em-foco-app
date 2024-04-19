@@ -20,7 +20,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textViewControleFinanceiro"
+        android:id="@+id/textViewUltimasDespesas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -30,8 +30,20 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textViewNaoPossuiDespesas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="115dp"
+        android:text="Ainda não possui despesas... Para realizar o controle financeiro faça o cadastro dela."
+        android:textColor="@color/red"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listTransacoes"
+        android:id="@+id/recyclerViewDespesas"
         android:layout_width="367dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -67,6 +79,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="60dp"
         android:padding="8dp"
+        android:visibility="invisible"
         app:egLegendTextSize="18sp" />
 
 </FrameLayout>

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.financa_em_foco_app.Models.Transacao;
+import com.example.financa_em_foco_app.Models.Despesa;
 import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentDespesasDialogBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -135,9 +135,9 @@ public class DespesasDialogFragment extends DialogFragment {
             String usuarioId = mAuth.getCurrentUser().getUid();
 
             if (id != null) {
-                Transacao transacao = new Transacao(id, data, descricao, valor, tipo, usuarioId);
+                Despesa despesa = new Despesa(id, data, descricao, valor, tipo, usuarioId);
 
-                mDatabase.child("Transacoes").child(id).setValue(transacao).addOnCompleteListener(task -> {
+                mDatabase.child("Despesas").child(id).setValue(despesa).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);

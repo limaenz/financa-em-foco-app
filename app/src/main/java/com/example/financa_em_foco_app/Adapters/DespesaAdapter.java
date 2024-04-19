@@ -9,33 +9,33 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.financa_em_foco_app.DetalhesDespesasActivity;
-import com.example.financa_em_foco_app.Models.Transacao;
-import com.example.financa_em_foco_app.ViewHolder.TransacaoViewHolder;
+import com.example.financa_em_foco_app.Models.Despesa;
+import com.example.financa_em_foco_app.ViewHolder.DespesaViewHolder;
 import com.example.financa_em_foco_app.databinding.ItemTransacaoBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class TransacaoAdapter extends RecyclerView.Adapter<TransacaoViewHolder> {
-    private List<Transacao> transacoesList;
+public class DespesaAdapter extends RecyclerView.Adapter<DespesaViewHolder> {
+    private List<Despesa> transacoesList;
     private Context context;
 
-    public TransacaoAdapter(Context context, List<Transacao> transacoesList) {
+    public DespesaAdapter(Context context, List<Despesa> transacoesList) {
         this.transacoesList = transacoesList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public TransacaoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DespesaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemTransacaoBinding binding = ItemTransacaoBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new TransacaoViewHolder(binding);
+        return new DespesaViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TransacaoViewHolder holder, int position) {
-        Transacao transacao = transacoesList.get(position);
+    public void onBindViewHolder(@NonNull DespesaViewHolder holder, int position) {
+        Despesa transacao = transacoesList.get(position);
         holder.bind(transacao);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(

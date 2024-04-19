@@ -5,7 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import java.util.Date;
 
 @IgnoreExtraProperties
-public class Transacao {
+public class Despesa {
     public String id;
     public Date data;
     public String descricao;
@@ -13,10 +13,10 @@ public class Transacao {
     public String tipo;
     public String idUsuario;
 
-    public Transacao() {
+    public Despesa() {
     }
 
-    public Transacao(
+    public Despesa(
             String id,
             Date data,
             String descricao,

@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.financa_em_foco_app.Models.Objetivo;
-import com.example.financa_em_foco_app.Models.Transacao;
 import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentObjetivosDialogBinding;
 import com.google.firebase.auth.FirebaseAuth;

@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.financa_em_foco_app.Adapters.TransacaoAdapter;
-import com.example.financa_em_foco_app.Models.Transacao;
+import com.example.financa_em_foco_app.Adapters.DespesaAdapter;
+import com.example.financa_em_foco_app.Models.Despesa;
 import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,8 +35,8 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DespesasDialogFragment despesasFragment;
     private RecyclerView recyclerView;
-    private TransacaoAdapter adapter;
-    private List<Transacao> transacoesList = new ArrayList<>();
+    private DespesaAdapter adapter;
+    private List<Despesa> despesas = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,9 +48,9 @@ public class HomeFragment extends Fragment {
     private void configuraTela() {
         mAuth = FirebaseAuth.getInstance();
         binding.buttonAdicionar.setOnClickListener(v -> mostrarModal());
-        recyclerView = binding.listTransacoes;
+        recyclerView = binding.recyclerViewDespesas;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TransacaoAdapter(getContext(), transacoesList);
+        adapter = new DespesaAdapter(getContext(), despesas);
         recyclerView.setAdapter(adapter);
         carregarTransacoes();
 
@@ -79,27 +78,31 @@ public class HomeFragment extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        TransacaoAdapter adapter = new TransacaoAdapter(
-                getContext(),
-                transacoesList
-        );
+        DespesaAdapter adapter = new DespesaAdapter(getContext(), despesas);
 
-        binding.listTransacoes.setAdapter(adapter);
+        binding.recyclerViewDespesas.setAdapter(adapter);
         dialog.show();
 
-        DatabaseReference transacoesRef = FirebaseDatabase.getInstance().getReference().child("Transacoes");
+        DatabaseReference despesasRef = FirebaseDatabase.getInstance().getReference().child("Despesas");
 
-        transacoesRef.orderByChild("idUsuario").equalTo(mAuth.getUid()).limitToLast(4).addValueEventListener(new ValueEventListener() {
+        despesasRef.orderByChild("idUsuario").equalTo(mAuth.getUid()).limitToLast(4).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                transacoesList.clear();
+                despesas.clear();
 
                 for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
-                    Transacao transacao = itemSnapshot.getValue(Transacao.class);
-                    transacoesList.add(transacao);
+                    Despesa transacao = itemSnapshot.getValue(Despesa.class);
+                    despesas.add(transacao);
                 }
 
-                if (transacoesList.size() == 4) binding.textViewVerMais.setVisibility(View.VISIBLE);
+                if (despesas.size() == 0) binding.textViewNaoPossuiDespesas.setVisibility(View.VISIBLE);
+
+                if (despesas.size() > 0) {
+                    binding.piechart.setVisibility(View.VISIBLE);
+                    binding.textViewNaoPossuiDespesas.setVisibility(View.INVISIBLE);
+                }
+
+                if (despesas.size() == 4) binding.textViewVerMais.setVisibility(View.VISIBLE);
 
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();

@@ -6,6 +6,18 @@
     android:background="@color/white"
     tools:context=".Fragments.ProfileFragment">
 
+    <TextView
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/colorPrimary"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Conta"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/buttonDeslogar"
         android:layout_width="385sp"
