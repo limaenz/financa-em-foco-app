@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.financa_em_foco_app.DetalhesDespesasActivity;
 import com.example.financa_em_foco_app.Models.Despesa;
-import com.example.financa_em_foco_app.ViewHolder.DespesaViewHolder;
+import com.example.financa_em_foco_app.ViewHolders.DespesaViewHolder;
 import com.example.financa_em_foco_app.databinding.ItemTransacaoBinding;
 
 import java.text.SimpleDateFormat;

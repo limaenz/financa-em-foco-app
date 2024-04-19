@@ -14,9 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.financa_em_foco_app.Adapters.DespesaAdapter;
+import com.example.financa_em_foco_app.Fragments.Dialogs.DespesasDialogFragment;
 import com.example.financa_em_foco_app.Models.Despesa;
 import com.example.financa_em_foco_app.R;
-import com.example.financa_em_foco_app.databinding.FragmentHomeBinding;
+import com.example.financa_em_foco_app.databinding.FragmentControleFinanceiroBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,8 +31,8 @@ import org.eazegraph.lib.models.PieModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
-    private FragmentHomeBinding binding;
+public class ControleFinanceiroFragment extends Fragment {
+    private FragmentControleFinanceiroBinding binding;
     private FirebaseAuth mAuth;
     private DespesasDialogFragment despesasFragment;
     private RecyclerView recyclerView;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentControleFinanceiroBinding.inflate(inflater, container, false);
         configuraTela();
         return binding.getRoot();
     }

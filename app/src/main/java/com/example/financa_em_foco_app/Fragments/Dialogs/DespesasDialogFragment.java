@@ -1,4 +1,4 @@
-package com.example.financa_em_foco_app.Fragments;
+package com.example.financa_em_foco_app.Fragments.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.financa_em_foco_app.Models.Objetivo;
+import com.example.financa_em_foco_app.Models.Despesa;
 import com.example.financa_em_foco_app.R;
-import com.example.financa_em_foco_app.databinding.FragmentObjetivosDialogBinding;
+import com.example.financa_em_foco_app.databinding.FragmentDespesasDialogBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,14 +25,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class ObjetivosDialogFragment extends DialogFragment {
-    private FragmentObjetivosDialogBinding binding;
+public class DespesasDialogFragment extends DialogFragment {
+    private FragmentDespesasDialogBinding binding;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentObjetivosDialogBinding.inflate(inflater, container, false);
+        binding = FragmentDespesasDialogBinding.inflate(inflater, container, false);
         configuraTela();
         return binding.getRoot();
     }
@@ -56,9 +56,9 @@ public class ObjetivosDialogFragment extends DialogFragment {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
                 (view, year, monthOfYear, dayOfMonth) -> {
-                    String dataSelecionada = String.format(Locale.US, "%04d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
-                    binding.editTextData.setText(dataSelecionada);
-                }, ano, mes, dia);
+            String dataSelecionada = String.format(Locale.US, "%04d-%02d-%02d", year, monthOfYear + 1, dayOfMonth);
+            binding.editTextData.setText(dataSelecionada);
+        }, ano, mes, dia);
 
         datePickerDialog.show();
     }
@@ -115,6 +115,11 @@ public class ObjetivosDialogFragment extends DialogFragment {
         String descricao = binding.editTextDescricao.getText().toString();
         double valor = Double.parseDouble(binding.editTextValor.getText().toString());
 
+        String tipo;
+        if (binding.radioButtonGanho.isChecked())
+            tipo = binding.radioButtonGanho.getText().toString();
+        else tipo = binding.radioButtonGasto.getText().toString();
+
         String dataString = binding.editTextData.getText().toString();
         SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
@@ -130,9 +135,9 @@ public class ObjetivosDialogFragment extends DialogFragment {
             String usuarioId = mAuth.getCurrentUser().getUid();
 
             if (id != null) {
-                Objetivo transacao = new Objetivo(id, data, descricao, valor, usuarioId);
+                Despesa despesa = new Despesa(id, data, descricao, valor, tipo, usuarioId);
 
-                mDatabase.child("Objetivos").child(id).setValue(transacao).addOnCompleteListener(task -> {
+                mDatabase.child("Despesas").child(id).setValue(despesa).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
@@ -141,7 +146,7 @@ public class ObjetivosDialogFragment extends DialogFragment {
                     } else {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Falha ao adicionar objetivo.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Falha ao adicionar transação.", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         dismiss();
                     }

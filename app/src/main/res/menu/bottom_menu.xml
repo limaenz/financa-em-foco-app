@@ -7,12 +7,12 @@
         android:title="Objetivos" />
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/controleFinanceiro"
         android:icon="@drawable/baseline_home_24"
         android:title="Início" />
 
     <item
-        android:id="@+id/perfil"
+        android:id="@+id/conta"
         android:icon="@drawable/baseline_person_24"
         android:title="Conta" />
 

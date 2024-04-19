@@ -5,9 +5,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.financa_em_foco_app.Fragments.HomeFragment;
+import com.example.financa_em_foco_app.Fragments.ControleFinanceiroFragment;
 import com.example.financa_em_foco_app.Fragments.ObjetivosFragment;
-import com.example.financa_em_foco_app.Fragments.ProfileFragment;
+import com.example.financa_em_foco_app.Fragments.ContaFragment;
 import com.example.financa_em_foco_app.databinding.ActivityTelaInicialBinding;
 
 public class TelaInicialActivity extends AppCompatActivity {
@@ -24,18 +24,18 @@ public class TelaInicialActivity extends AppCompatActivity {
     private void configuraTela() {
         binding = ActivityTelaInicialBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        substituirFragmento(new HomeFragment());
-        binding.bottomNavigation.setSelectedItemId(R.id.home);
+        substituirFragmento(new ControleFinanceiroFragment());
+        binding.bottomNavigation.setSelectedItemId(R.id.controleFinanceiro);
     }
 
     private void configurarNavegacaoInferior() {
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
-            if (itemId == R.id.home) {
-                substituirFragmento(new HomeFragment());
-            } else if (itemId == R.id.perfil) {
-                substituirFragmento(new ProfileFragment());
+            if (itemId == R.id.controleFinanceiro) {
+                substituirFragmento(new ControleFinanceiroFragment());
+            } else if (itemId == R.id.conta) {
+                substituirFragmento(new ContaFragment());
             } else if (itemId == R.id.objetivos) {
                 substituirFragmento(new ObjetivosFragment());
             }

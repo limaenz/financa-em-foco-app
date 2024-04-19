@@ -10,16 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.financa_em_foco_app.MainActivity;
-import com.example.financa_em_foco_app.databinding.FragmentProfileBinding;
+import com.example.financa_em_foco_app.databinding.FragmentContaBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ProfileFragment extends Fragment {
-    private FragmentProfileBinding binding;
+public class ContaFragment extends Fragment {
+    private FragmentContaBinding binding;
     private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentContaBinding.inflate(inflater, container, false);
         configuraTela();
         return binding.getRoot();
     }

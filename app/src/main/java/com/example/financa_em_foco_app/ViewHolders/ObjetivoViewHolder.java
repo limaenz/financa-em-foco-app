@@ -1,4 +1,4 @@
-package com.example.financa_em_foco_app.ViewHolder;
+package com.example.financa_em_foco_app.ViewHolders;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

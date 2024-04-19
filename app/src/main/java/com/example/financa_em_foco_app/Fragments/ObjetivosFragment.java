@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.financa_em_foco_app.Adapters.ObjetivoAdapter;
+import com.example.financa_em_foco_app.Fragments.Dialogs.ObjetivosDialogFragment;
 import com.example.financa_em_foco_app.Models.Objetivo;
 import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.FragmentObjetivosBinding;
