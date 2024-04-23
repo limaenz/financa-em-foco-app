@@ -45,7 +45,7 @@ public class ObjetivosDialogFragment extends DialogFragment {
         binding.editTextData.setInputType(InputType.TYPE_NULL);
 
         binding.editTextData.setOnClickListener(v -> mostrarData());
-        binding.botaoAdicionar.setOnClickListener(v -> adicionarTransacao());
+        binding.botaoAdicionar.setOnClickListener(v -> adicionarObjetivo());
     }
 
     private void mostrarData() {
@@ -103,7 +103,7 @@ public class ObjetivosDialogFragment extends DialogFragment {
         return true;
     }
 
-    private void adicionarTransacao() {
+    private void adicionarObjetivo() {
         binding.botaoAdicionar.setEnabled(false);
 
         if (!validCampos()) {
@@ -130,9 +130,9 @@ public class ObjetivosDialogFragment extends DialogFragment {
             String usuarioId = mAuth.getCurrentUser().getUid();
 
             if (id != null) {
-                Objetivo transacao = new Objetivo(id, data, descricao, valor, usuarioId);
+                Objetivo objetivo = new Objetivo(id, data, descricao, valor, usuarioId);
 
-                mDatabase.child("Objetivos").child(id).setValue(transacao).addOnCompleteListener(task -> {
+                mDatabase.child("Objetivos").child(id).setValue(objetivo).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         binding.botaoAdicionar.setEnabled(true);
                         binding.progressBar.setVisibility(View.GONE);

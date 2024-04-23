@@ -72,9 +72,9 @@ public class ObjetivosFragment extends Fragment {
         binding.recyclerViewObjetivos.setAdapter(adapter);
         dialog.show();
 
-        DatabaseReference transacoesRef = FirebaseDatabase.getInstance().getReference().child("Objetivos");
+        DatabaseReference objetivosRef = FirebaseDatabase.getInstance().getReference().child("Objetivos");
 
-        transacoesRef.orderByChild("idUsuario").equalTo(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
+        objetivosRef.orderByChild("idUsuario").equalTo(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 objetivos.clear();

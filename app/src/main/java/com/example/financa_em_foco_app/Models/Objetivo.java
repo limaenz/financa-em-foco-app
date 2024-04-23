@@ -6,17 +6,18 @@ public class Objetivo {
     public String id;
     public Date data;
     public String descricao;
-    public double valor;
+    public double valorTotal;
     public String idUsuario;
+    public double valorAtual;
 
     public Objetivo() {
     }
 
-    public Objetivo(String id, Date data, String descricao, double valor, String idUsuario) {
+    public Objetivo(String id, Date data, String descricao, double valorTotal, String idUsuario) {
         this.id = id;
         this.data = data;
         this.descricao = descricao;
-        this.valor = valor;
+        this.valorTotal = valorTotal;
         this.idUsuario = idUsuario;
     }
 }

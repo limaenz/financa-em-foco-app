@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.financa_em_foco_app.Models.Objetivo;
 import com.example.financa_em_foco_app.ViewHolders.ObjetivoViewHolder;
-import com.example.financa_em_foco_app.databinding.ItemTransacaoBinding;
+import com.example.financa_em_foco_app.databinding.ItemObjetivoBinding;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ObjetivoAdapter extends RecyclerView.Adapter<ObjetivoViewHolder> {
     @NonNull
     @Override
     public ObjetivoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemTransacaoBinding binding = ItemTransacaoBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemObjetivoBinding binding = ItemObjetivoBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ObjetivoViewHolder(binding);
     }
 
