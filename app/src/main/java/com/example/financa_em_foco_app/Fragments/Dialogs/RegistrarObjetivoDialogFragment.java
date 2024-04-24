@@ -1,24 +1,16 @@
 package com.example.financa_em_foco_app.Fragments.Dialogs;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.financa_em_foco_app.Fragments.ObjetivosFragment;
-import com.example.financa_em_foco_app.MainActivity;
 import com.example.financa_em_foco_app.Models.Objetivo;
-import com.example.financa_em_foco_app.R;
-import com.example.financa_em_foco_app.RegisterActivity;
 import com.example.financa_em_foco_app.databinding.FragmentRegistrarObjetivoDialogBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,12 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class RegistrarObjetivoDialogFragment extends DialogFragment {
     private String idObjetivo;
@@ -69,8 +55,12 @@ public class RegistrarObjetivoDialogFragment extends DialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Objetivo objetivo = dataSnapshot.getValue(Objetivo.class);
+
                     if (objetivo != null) {
-                        objetivo.valorAtual = objetivo.valorAtual + valorDeposito;
+                        if (!validaCampos(objetivo))
+                            return;
+
+                        objetivo.valorAtual += valorDeposito;
 
                         objetivoRef.setValue(objetivo).addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
@@ -96,5 +86,30 @@ public class RegistrarObjetivoDialogFragment extends DialogFragment {
                 Toast.makeText(getContext(), "Falha ao adicionar depósito.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private Boolean validaCampos(Objetivo objetivo) {
+        double valorDeposito = objetivo.valorAtual + Double
+                .parseDouble(binding.editTextValor
+                        .getText()
+                        .toString());
+
+        if (valorDeposito > objetivo.valorTotal) {
+            binding.editTextValor.setError("Este valor é superior ao cadastrado no objetivo.");
+            binding.editTextValor.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        if (valorDeposito <= 0) {
+            binding.editTextValor.setError("Valor inválido.");
+            binding.editTextValor.requestFocus();
+            binding.progressBar.setVisibility(View.GONE);
+            binding.botaoAdicionar.setEnabled(true);
+            return false;
+        }
+
+        return true;
     }
 }

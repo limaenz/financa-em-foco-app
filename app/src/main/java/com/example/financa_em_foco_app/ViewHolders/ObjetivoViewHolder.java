@@ -1,5 +1,9 @@
 package com.example.financa_em_foco_app.ViewHolders;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +36,17 @@ public class ObjetivoViewHolder extends RecyclerView.ViewHolder {
         long diffMillis = calendarObjetivo.getTimeInMillis() - calendarHoje.getTimeInMillis();
         long diffDays = (diffMillis / (1000 * 60 * 60 * 24)) + 1;
 
-        if (diffDays < 0) {
+        if (diffDays < 30) {
+            int corAmarela = ContextCompat.getColor(binding.getRoot().getContext(), R.color.yellow);
+            binding.textViewTempoRestante.setTextColor(corAmarela);
+        }
+
+        if (diffDays > 30) {
+            int corAmarela = ContextCompat.getColor(binding.getRoot().getContext(), R.color.black);
+            binding.textViewTempoRestante.setTextColor(corAmarela);
+        }
+
+        if (diffDays <= 0) {
             binding.textViewTempoRestante.setText("Tempo expirado");
             int redColor = ContextCompat.getColor(binding.getRoot().getContext(), R.color.red);
             binding.textViewTempoRestante.setTextColor(redColor);
@@ -47,9 +61,17 @@ public class ObjetivoViewHolder extends RecyclerView.ViewHolder {
         double porcentagem = (objetivo.valorAtual / objetivo.valorTotal) * 100;
         String porcentagemFormatada = decimalFormat.format(porcentagem) + "%";
 
+        String textoValorAtual = "R$ " + valorAtualFormatado;
+        String textoValorTotal = " de R$ " + valorTotalFormatado;
+
+        SpannableStringBuilder textoFormatado = new SpannableStringBuilder();
+        textoFormatado.append(textoValorAtual);
+        textoFormatado.setSpan(new StyleSpan(android.graphics.Typeface.BOLD),
+                0, textoValorAtual.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textoFormatado.append(textoValorTotal);
+
         binding.textViewDescricao.setText(objetivo.descricao);
-        binding.textViewValorAtual.setText("R$ " + valorAtualFormatado);
-        binding.textViewValorTotal.setText(" de R$ " + valorTotalFormatado);
+        binding.textViewValor.setText(textoFormatado);
 
         binding.progressBar.setProgress((int) Math.round(porcentagem));
         binding.textViewPorcentagem.setText(porcentagemFormatada);

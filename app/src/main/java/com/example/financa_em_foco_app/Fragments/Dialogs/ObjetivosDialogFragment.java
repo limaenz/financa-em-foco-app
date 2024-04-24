@@ -116,7 +116,7 @@ public class ObjetivosDialogFragment extends DialogFragment {
         double valor = Double.parseDouble(binding.editTextValor.getText().toString());
 
         String dataString = binding.editTextData.getText().toString();
-        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

@@ -83,6 +83,13 @@ public class ObjetivosFragment extends Fragment {
                     objetivos.add(objetivo);
                 }
 
+                if (objetivos.isEmpty()) {
+                    binding.textViewNaoPossuiDespesas.setVisibility(View.VISIBLE);
+                }
+
+                if (!objetivos.isEmpty())
+                    binding.textViewNaoPossuiDespesas.setVisibility(View.INVISIBLE);
+
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }

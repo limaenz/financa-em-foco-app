@@ -96,9 +96,9 @@ public class ControleFinanceiroFragment extends Fragment {
                     despesas.add(transacao);
                 }
 
-                if (despesas.size() == 0) binding.textViewNaoPossuiDespesas.setVisibility(View.VISIBLE);
+                if (despesas.isEmpty()) binding.textViewNaoPossuiDespesas.setVisibility(View.VISIBLE);
 
-                if (despesas.size() > 0) {
+                if (!despesas.isEmpty()) {
                     binding.piechart.setVisibility(View.VISIBLE);
                     binding.textViewNaoPossuiDespesas.setVisibility(View.INVISIBLE);
                 }

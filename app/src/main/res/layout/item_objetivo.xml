@@ -35,22 +35,12 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewValorAtual"
-            android:layout_width="100sp"
+            android:id="@+id/textViewValor"
+            android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_below="@id/textViewTempoRestante"
             android:layout_marginStart="20dp"
             android:layout_marginTop="13dp"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewValorTotal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_below="@id/textViewTempoRestante"
-            android:layout_marginTop="13dp"
-            android:layout_toEndOf="@id/textViewValorAtual"
             android:textSize="13sp" />
 
         <ProgressBar
@@ -58,7 +48,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="300sp"
             android:layout_height="20sp"
-            android:layout_below="@id/textViewValorAtual"
+            android:layout_below="@id/textViewValor"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="13sp"
@@ -71,7 +61,7 @@
             android:id="@+id/textViewPorcentagem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewValorAtual"
+            android:layout_below="@id/textViewValor"
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@id/progressBar"
             android:textSize="13sp"
