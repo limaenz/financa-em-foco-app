@@ -9,11 +9,7 @@ import com.example.financa_em_foco_app.R;
 import com.example.financa_em_foco_app.databinding.ItemObjetivoBinding;
 
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class ObjetivoViewHolder extends RecyclerView.ViewHolder {
@@ -26,7 +22,7 @@ public class ObjetivoViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Objetivo objetivo) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        String valorFormatado = decimalFormat.format(objetivo.valorTotal);
+        String valorTotalFormatado = decimalFormat.format(objetivo.valorTotal);
         String valorAtualFormatado = decimalFormat.format(objetivo.valorAtual);
 
         Calendar calendarHoje = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
@@ -49,11 +45,11 @@ public class ObjetivoViewHolder extends RecyclerView.ViewHolder {
             binding.textViewTempoRestante.setText("Faltam " + diffDays + " dias");
 
         double porcentagem = (objetivo.valorAtual / objetivo.valorTotal) * 100;
-        String porcentagemFormatada = porcentagem + "%";
+        String porcentagemFormatada = decimalFormat.format(porcentagem) + "%";
 
         binding.textViewDescricao.setText(objetivo.descricao);
         binding.textViewValorAtual.setText("R$ " + valorAtualFormatado);
-        binding.textViewValorTotal.setText(" de R$ " + valorFormatado);
+        binding.textViewValorTotal.setText(" de R$ " + valorTotalFormatado);
 
         binding.progressBar.setProgress((int) Math.round(porcentagem));
         binding.textViewPorcentagem.setText(porcentagemFormatada);

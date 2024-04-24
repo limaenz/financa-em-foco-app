@@ -35,7 +35,6 @@ public class ObjetivosFragment extends Fragment {
     private List<Objetivo> objetivos = new ArrayList<>();
     private ObjetivoAdapter adapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentObjetivosBinding.inflate(inflater, container, false);
