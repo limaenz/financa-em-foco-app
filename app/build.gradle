@@ -44,7 +44,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.8.1')
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
-    implementation libs.eazegraph
-    implementation libs.library
     implementation libs.cardview
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
