@@ -132,14 +132,14 @@ public class ControleFinanceiroFragment extends Fragment {
                 mPieChart.animateY(1000);
 
                 Legend legend = binding.piechart.getLegend();
-                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
                 legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
                 legend.setTextSize(16f);
                 legend.setTextColor(Color.BLACK);
                 legend.setForm(Legend.LegendForm.CIRCLE);
-                legend.setTypeface(Typeface.DEFAULT_BOLD);
+                legend.setTypeface(Typeface.SANS_SERIF);
                 legend.setXEntrySpace(25f);
-                legend.setYOffset(30f);
+                legend.setYOffset(40f);
 
                 mPieChart.invalidate();
 

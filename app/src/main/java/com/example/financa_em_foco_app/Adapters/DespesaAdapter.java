@@ -51,6 +51,9 @@ public class DespesaAdapter extends RecyclerView.Adapter<DespesaViewHolder> {
                     DetalhesDespesasActivity.class);
 
             intent.putExtra(
+                    "Id", transacao.id);
+
+            intent.putExtra(
                     "Descricao", transacao.descricao);
 
             intent.putExtra(

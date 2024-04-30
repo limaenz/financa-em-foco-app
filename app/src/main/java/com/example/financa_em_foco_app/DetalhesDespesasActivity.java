@@ -1,10 +1,13 @@
 package com.example.financa_em_foco_app;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.financa_em_foco_app.databinding.ActivityDetalhesDespesasBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DetalhesDespesasActivity extends AppCompatActivity {
     private ActivityDetalhesDespesasBinding binding;
@@ -34,6 +37,35 @@ public class DetalhesDespesasActivity extends AppCompatActivity {
                     .setText(String.format("Tipo: %s", bundle
                             .getString("Tipo")));
 
+            binding.textViewId.setText(bundle.getString("Id"));
         }
+
+        binding.buttonConcluirObjetivo.setOnClickListener(x -> excluirTransacao());
+    }
+
+    private void excluirTransacao() {
+        String transacaoId = binding.textViewId.getText().toString();
+
+        DatabaseReference objetivoRef = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Despesas")
+                .child(transacaoId);
+
+        objetivoRef.removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(
+                        DetalhesDespesasActivity.this,
+                        "Transação removida com sucesso!", Toast.LENGTH_SHORT
+                ).show();
+                finish();
+            } else {
+                Toast.makeText(
+                        DetalhesDespesasActivity.this,
+                        "Falha ao excluir o transação.",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+        });
     }
 }

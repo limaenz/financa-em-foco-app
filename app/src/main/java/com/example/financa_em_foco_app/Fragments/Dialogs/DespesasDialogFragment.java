@@ -56,10 +56,9 @@ public class DespesasDialogFragment extends DialogFragment {
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
                 (view, year, monthOfYear, dayOfMonth) -> {
-            String dataSelecionada = String.format(Locale.getDefault(), "%02d/%02d/%02d",
-                    dayOfMonth, monthOfYear + 1, year);
-            binding.editTextData.setText(dataSelecionada);
-        }, ano, mes, dia);
+                    String dataSelecionada = String.format(Locale.getDefault(), "%02d/%02d/%04d", dayOfMonth, monthOfYear + 1, year);
+                    binding.editTextData.setText(dataSelecionada);
+                }, ano, mes, dia);
 
         datePickerDialog.show();
     }
@@ -122,7 +121,7 @@ public class DespesasDialogFragment extends DialogFragment {
         else tipo = binding.radioButtonGasto.getText().toString();
 
         String dataString = binding.editTextData.getText().toString();
-        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
