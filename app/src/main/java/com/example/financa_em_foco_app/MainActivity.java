@@ -1,6 +1,9 @@
 /*
 Enzo de Lima França - RA: 223571
-
+Rodrigo Cortez de Barros Corrá - RA: 223121
+Ullian de Oliveira Souza - RA: 223071
+Giovana da Silva Siqueira de Oliveira - RA: 223526
+Leonardo Salles - RA: 212155
 */
 
 package com.example.financa_em_foco_app;
