@@ -1,6 +1,7 @@
 package com.example.financa_em_foco_app.Fragments;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.example.financa_em_foco_app.Adapters.DespesaAdapter;
 import com.example.financa_em_foco_app.Fragments.Dialogs.DespesasDialogFragment;
 import com.example.financa_em_foco_app.Models.Despesa;
 import com.example.financa_em_foco_app.R;
+import com.example.financa_em_foco_app.VerMaisDespesasActivity;
 import com.example.financa_em_foco_app.databinding.FragmentControleFinanceiroBinding;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -53,6 +55,11 @@ public class ControleFinanceiroFragment extends Fragment {
     private void configuraTela() {
         mAuth = FirebaseAuth.getInstance();
         binding.buttonAdicionar.setOnClickListener(v -> mostrarModal());
+        binding.textViewVerMais.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), VerMaisDespesasActivity.class);
+            getContext().startActivity(intent);
+        });
+
         recyclerView = binding.recyclerViewDespesas;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new DespesaAdapter(getContext(), despesas);

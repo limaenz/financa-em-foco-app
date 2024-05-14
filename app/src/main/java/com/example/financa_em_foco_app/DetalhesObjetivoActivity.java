@@ -27,15 +27,16 @@ public class DetalhesObjetivoActivity extends AppCompatActivity {
 
             binding.textViewDescricao.setText(bundle.getString("Descricao"));
 
-            binding.textViewValorAtual.setText(String.format("Valor atual: %s", bundle.getString("Valor atual")));
+            binding.textViewValorAtual.setText(String.format("Valor atual: R$ %s", bundle.getString("Valor atual")));
 
-            binding.textViewValorTotal.setText(String.format("Valor total: %s", bundle.getString("Valor total")));
+            binding.textViewValorTotal.setText(String.format("Valor total: R$ %s", bundle.getString("Valor total")));
 
             binding.textViewDataFinal.setText(String.format("Data final: %s", bundle.getString("Data")));
         }
 
         binding.buttonRegistrarDeposito.setOnClickListener(x -> mostrarModal());
         binding.buttonConcluirObjetivo.setOnClickListener(x -> concluirObjetivo());
+        binding.backButton.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void mostrarModal() {

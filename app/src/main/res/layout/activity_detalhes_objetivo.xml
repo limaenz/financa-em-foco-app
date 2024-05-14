@@ -3,8 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".DetalhesDespesasActivity">
+    tools:context=".DetalhesObjetivoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="teste"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="Detalhes"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textViewId"
@@ -12,41 +39,30 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:visibility="invisible"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/textViewDescricao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
         android:text="Descrição"
-        android:textSize="24sp"
+        android:textSize="45sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textViewDataFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewDescricao"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:text="Valor: R$"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textViewValorAtual"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewDataFinal"
+        android:layout_below="@id/textViewDescricao"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="Data:"
+        android:layout_marginTop="24dp"
+        android:text="Valor atual: R$"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/textViewValorTotal"
@@ -54,37 +70,46 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewValorAtual"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="Tipo:"
+        android:text="Valor total: R$"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/textViewDataFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewValorTotal"
+        android:layout_centerHorizontal="true"
+        android:text="Data:"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
 
     <Button
         android:id="@+id/buttonRegistrarDeposito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="67dp"
         android:text="Registrar depósito"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/buttonConcluirObjetivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-
         android:layout_above="@id/buttonRegistrarDeposito"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
         android:text="Concluir objetivo"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        android:textStyle="bold" />
 
 </RelativeLayout>

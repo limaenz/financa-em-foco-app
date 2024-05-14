@@ -5,12 +5,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.financa_em_foco_app.Fragments.Dialogs.AtualizarDespesasDialogFragment;
 import com.example.financa_em_foco_app.databinding.ActivityDetalhesDespesasBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class DetalhesDespesasActivity extends AppCompatActivity {
     private ActivityDetalhesDespesasBinding binding;
+    private AtualizarDespesasDialogFragment atualizarDespesasDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,9 @@ public class DetalhesDespesasActivity extends AppCompatActivity {
             binding.textViewId.setText(bundle.getString("Id"));
         }
 
+        binding.buttonRegistrarDeposito.setOnClickListener(x -> mostrarModal());
         binding.buttonConcluirObjetivo.setOnClickListener(x -> excluirTransacao());
+        binding.backButton.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
     }
 
     private void excluirTransacao() {
@@ -67,5 +71,12 @@ public class DetalhesDespesasActivity extends AppCompatActivity {
                 ).show();
             }
         });
+    }
+
+    private void mostrarModal() {
+        if (atualizarDespesasDialogFragment == null || !atualizarDespesasDialogFragment.isVisible()) {
+            atualizarDespesasDialogFragment = new AtualizarDespesasDialogFragment(binding.textViewId.getText().toString());
+            atualizarDespesasDialogFragment.show(getSupportFragmentManager(), atualizarDespesasDialogFragment.getTag());
+        }
     }
 }

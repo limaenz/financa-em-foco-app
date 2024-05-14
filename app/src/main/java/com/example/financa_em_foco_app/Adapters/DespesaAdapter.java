@@ -65,6 +65,8 @@ public class DespesaAdapter extends RecyclerView.Adapter<DespesaViewHolder> {
             intent.putExtra(
                     "Tipo", transacao.tipo);
 
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             context.startActivity(intent);
         });
     }

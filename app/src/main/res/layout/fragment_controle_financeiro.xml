@@ -51,15 +51,23 @@
 
     <TextView
         android:id="@+id/textViewVerMais"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="385dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="327dp"
-        android:layout_marginTop="385dp"
-        android:clickable="true"
+        android:layout_gravity="bottom"
         android:text="Ver mais"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="13sp"
         android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="40dp"
         android:visibility="invisible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -71,13 +79,5 @@
         android:layout_marginBottom="50dp"
         android:contentDescription="TODO"
         android:src="@drawable/mais" />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="60dp"
-        android:visibility="invisible" />
 
 </FrameLayout>
